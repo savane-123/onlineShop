@@ -7,7 +7,7 @@ require __DIR__ . '/../vendor/autoload.php';
 require_once "../service/AddressService.php";
 $app = AppFactory::create();
 
-$app->setBasePath("/slim/MyProject1/RestApi/AddressApi.php");
+$app->setBasePath("/slim/onlineShop/onlineShop/RestApi/AddressApi.php");
 $app->post('/addAddress', function (Request $request, Response $response, array $args) {
 if(!haveEmptyParameters(array('email','address','longitude','lagitude','city','state','country'),$response)){
     $request_data=$request->getParsedBody();

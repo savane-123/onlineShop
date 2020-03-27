@@ -7,7 +7,7 @@ require __DIR__ . '/../vendor/autoload.php';
 require_once "../service/UserRegister.php";
 $app = AppFactory::create();
 
-$app->setBasePath("/slim/MyProject1/RestApi/RegisterApi.php");
+$app->setBasePath("/slim/onlineShop/onlineShop/RestApi/RegisterApi.php");
   $app->post('/createUser', function (Request $request, Response $response, array $args) {
   if(!haveEmptyParameters(array('Firstname','LastName','Email','Phone','DateOfBirth','Password','Gender','AddressId','UserType'),$response)){
       $request_data=$request->getParsedBody();
