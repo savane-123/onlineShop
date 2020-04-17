@@ -1,0 +1,61 @@
+<resources>
+	<string name="app_name">online shop</string>
+	<string name="title_activity_login">Sign in</string>
+	<string name="prompt_email">Email</string>
+	<string name="prompt_password">Password</string>
+	<string name="action_sign_in">Sign in or register</string>
+	<string name="action_sign_in_short">Sign in</string>
+	<string name="welcome">"Welcome !"</string>
+	<string name="invalid_username">Not a valid username</string>
+	<string name="invalid_password">Password must be >5 characters</string>
+	<string name="login_failed">"Login failed"</string>
+	<string name="country_prompt">Choose a country</string>
+	<string-array name="country_arrays">
+		<item>Choose a country</item>
+		<item>India</item>
+		<item>Malaysia</item>
+		<item>United States</item>
+		<item>Indonesia</item>
+		<item>France</item>
+		<item>Italy</item>
+		<item>Singapore</item>
+		<item>New Zealand</item>
+		<item>Cote D Ivoire</item>
+		<item>Sudan</item>
+	</string-array>
+
+	<string name="State_prompt">Choose a country</string>
+	<string-array name="State_arrays">
+		<item>Choose a state</item>
+		<item>Karnataka</item>
+		<item>Andra pradhes</item>
+		<item>Delhi</item>
+		<item>Kerela</item>
+		<item>Kolkata</item>
+		<item>Tamil Nadu</item>
+		<item>Lion</item>
+		<item>Paris</item>
+		<item>Abidjan</item>
+		<item>Yamoussoukro</item>
+	</string-array>
+
+	<string name="city_prompt">Choose a country</string>
+	<string-array name="city_arrays">
+		<item>Choose a city</item>
+		<item>Bangalore</item>
+		<item>Hyderabade</item>
+		<item>Goa</item>
+		<item>Pondichery</item>
+		<item>Kolkata</item>
+		<item>Chenai</item>
+		<item>Lion</item>
+		<item>Paris</item>
+		<item>Abidjan</item>
+		<item>Yamoussoukro</item>
+	</string-array>
+	<string name="geder">Choose a gender</string>
+	<string-array name="geder_arrays">
+		<item>Male</item>
+		<item>Female</item>
+	</string-array>
+</resources>
