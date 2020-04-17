@@ -9,7 +9,7 @@ $app = AppFactory::create();
 
 $app->setBasePath("/slim/onlineShop/onlineShop/RestApi/RegisterApi.php");
   $app->post('/createUser', function (Request $request, Response $response, array $args) {
-  if(!haveEmptyParameters(array('Firstname','LastName','Email','Phone','DateOfBirth','Password','Gender','AddressId','UserType'),$response)){
+  if(!haveEmptyParameters(array('Firstname','LastName','Email','Phone','DateOfBirth','Password','Gender'),$response)){
       $request_data=$request->getParsedBody();
       $firstName=$request_data['Firstname'];
       $lastName=$request_data['LastName'];
@@ -18,8 +18,8 @@ $app->setBasePath("/slim/onlineShop/onlineShop/RestApi/RegisterApi.php");
       $dateOfBarth=str_replace("/", "-", $request_data['DateOfBirth']);
       $password=$request_data['Password'];
       $gender=$request_data['Gender'];
-      $addressId=$request_data['AddressId'];
-      $userType=$request_data['UserType'];
+      $addressId=null;
+      $userType=Null;
       $dateOfRegistration=date("Y-m-d");
       $DateOfUpdate=null;
           $db=new UserRigister;
@@ -248,5 +248,72 @@ $app->post('/getAllStates', function (Request $request, Response $response, arra
 									->withHeader('Content-type','application/json')
 									->withStatus(201);
 }
+});
+$app->get('/verifyEmail', function (Request $request, Response $response, array $args) {
+  $app = AppFactory::create();
+    $verifyEmail =$request->getQueryParams()['token'];
+    $db = new UserRigister;
+    $result=$db->updateVerifyStatus($verifyEmail);
+    if ($result==200) {
+      $response_data=array();
+      //$response_data['error']=false;
+      $response_data['message']="SUCCESS";
+      $response->getBody()->write(json_encode($response_data));
+      return $response
+                    ->withHeader('Content-type','application/json')
+                    ->withStatus(200);
+    }elseif ($result==404)
+     {
+      $response_data=array();
+      //$response_data['error']=true;
+      $response_data['message']="ERROR ".$verifyEmail;
+      $response->getBody()->write(json_encode($response_data));
+      return $response
+                    ->withHeader('Content-type','application/json')
+                    ->withStatus(400);
+    }else {
+      $response_data=array();
+      //$response_data['error']=true;
+      $response_data['message']="ERROR ".$verifyEmail;
+      $response->getBody()->write(json_encode($response_data));
+      return $response
+                    ->withHeader('Content-type','application/json')
+                    ->withStatus(500);
+    }
+
+});
+$app->post('/sendResetOtp', function (Request $request, Response $response, array $args) {
+    $request_data=$request->getParsedBody();
+    $email=$request_data['email'];
+    //$email=$str = ltrim($email, '?');
+        $db=new UserRigister;
+        $rs=$db->sendOtp($email);
+        if($rs==200){
+          $message=array();
+          $message['error']=false;
+          $message['message']='The otp has been sent';
+          $response->getBody()->write(json_encode($message));
+          return $response
+                        ->withHeader('Content_type','application/json')
+                        ->withStatus(201);
+        }
+        elseif($rs==400){
+          $message=array();
+          $message['error']=true;
+          $message['message']='some eroor is occurred';
+          $response->getBody()->write(json_encode($message));
+          return $response
+                        ->withHeader('Content_type','application/json')
+                        ->withStatus(422);
+        }
+        elseif($rs==404){
+          $message=array();
+          $message['error']=true;
+          $message['message']='User is Not  Exist';
+          $response->getBody()->write(json_encode($message));
+          return $response
+                        ->withHeader('Content_type','application/json')
+                        ->withStatus(404);
+        }
 });
 $app->run();
