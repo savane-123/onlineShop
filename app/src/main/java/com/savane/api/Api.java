@@ -32,6 +32,19 @@ public interface Api {
             @Nullable @Field("email") String email,
             @Nullable @Field("password") String password
     );
+    @FormUrlEncoded
+    @POST("sendResetOtp")
+    Call<DefaultResponse> sendResetOtp(
+            @Nullable @Field("email") String email
+    );
+    @FormUrlEncoded
+    @POST("updatePassword")
+    Call<DefaultResponse> updatePassword(
+            @Nullable @Field("email") String email,
+            @Nullable @Field("otp") String otp,
+            @Nullable @Field("password") String password,
+            @Nullable @Field("conformpassword") String conformpassword
+    );
    /* @GET("getAll")
     Call<UserResponse> getUsers();*/
 }

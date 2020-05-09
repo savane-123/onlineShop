@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.savane.R;
 import com.savane.api.LoginResponse;
 import com.savane.api.RetrofitClient1;
+import com.savane.sendOtp;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,7 +22,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
   EditText editEmail,edidPassword;
-  TextView buttonLogin,buttonSigin,buttonBack;
+  TextView buttonLogin,buttonSigin,forgotPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,16 +31,24 @@ public class MainActivity extends AppCompatActivity {
         edidPassword=findViewById(R.id.text2);
         buttonLogin=findViewById(R.id.login);
         buttonSigin=findViewById(R.id.sigin);
+        forgotPassword=findViewById(R.id.forgotPassword);
        // buttonBack=findViewById(R.id.back);
 
         buttonSigin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(getApplicationContext(),sign_up.class);
+                Intent i = new Intent(getApplicationContext(),sign_up.class);
                 startActivity(i);
             }
         });
 
+       forgotPassword.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent i = new Intent(getApplicationContext(), sendOtp.class);
+               startActivity(i);
+           }
+       });
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { login(); }
@@ -50,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         String email=editEmail.getText().toString().trim();
         String password=edidPassword.getText().toString().trim();
         if (email.isEmpty()){
-            editEmail.setError(" email is required");
+            editEmail.setError("email is required");
             editEmail.requestFocus();
             return;
         }

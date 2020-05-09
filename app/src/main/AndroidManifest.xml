@@ -12,7 +12,9 @@
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme"
 		android:usesCleartextTraffic="true">
-		<activity android:name=".conformPassword"></activity>
+		<activity android:name=".activities.updateUser"></activity>
+		<activity android:name=".sendOtp" />
+		<activity android:name=".conformPassword" />
 		<activity android:name=".activities.Address" />
 		<activity android:name=".activities.sign_up" />
 		<activity android:name=".activities.MainActivity">
