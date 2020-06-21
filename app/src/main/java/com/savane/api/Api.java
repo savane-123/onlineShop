@@ -3,6 +3,7 @@ package com.savane.api;
 import androidx.annotation.Nullable;
 
 import com.savane.data.model.DefaultResponse;
+import com.savane.data.model.UserResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -45,6 +46,41 @@ public interface Api {
             @Nullable @Field("password") String password,
             @Nullable @Field("conformpassword") String conformpassword
     );
-   /* @GET("getAll")
-    Call<UserResponse> getUsers();*/
+    @FormUrlEncoded
+    @POST("updateUser")
+    Call<DefaultResponse> updateUser(
+            @Nullable @Field("Firstname") String Firstname,
+            @Nullable @Field("LastName") String LastName,
+            @Nullable @Field("Email") String Email,
+            @Nullable @Field("Phone") String Phone,
+            @Nullable @Field("DateOfBirth") String DateOfBirth,
+            @Nullable @Field("Gender") String Gender
+    );
+    @FormUrlEncoded
+    @POST("deleteUser")
+    Call<DefaultResponse> deleteUser(
+            @Nullable @Field("email") String email
+    );
+    @FormUrlEncoded
+    @POST("addAddress")
+    Call<DefaultResponse> addAddress(
+            @Nullable @Field("email") String email,
+            @Nullable @Field("address") String address,
+            @Nullable @Field("longitude") String longitude,
+            @Nullable @Field("lagitude") String lagitude,
+            @Nullable @Field("city") String city,
+            @Nullable @Field("state") String state,
+            @Nullable @Field("country") String country
+    );
+    @FormUrlEncoded
+    @POST("addImage")
+    Call<DefaultResponse> addImage(
+            @Nullable @Field("image1") String image1,
+            @Nullable @Field("user_id") String user_id
+    );
+    @FormUrlEncoded
+    @POST("getAllImages")
+    Call<UserResponse> getAllImages(
+            @Nullable @Field("userId") String userId
+    );
 }

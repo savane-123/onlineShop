@@ -14,6 +14,7 @@ import com.savane.R;
 import com.savane.api.LoginResponse;
 import com.savane.api.RetrofitClient1;
 import com.savane.sendOtp;
+import com.savane.storage.SharedPrefManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,59 +52,66 @@ public class MainActivity extends AppCompatActivity {
        });
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { login(); }
+            public void onClick(View v) {
+                 {
+                    login();
+                 }
+            }
+
         });
 
     }
-    private void login(){
-        String email=editEmail.getText().toString().trim();
-        String password=edidPassword.getText().toString().trim();
-        if (email.isEmpty()){
+    private void login() {
+        String email = editEmail.getText().toString().trim();
+        String password = edidPassword.getText().toString().trim();
+        if (email.isEmpty()) {
             editEmail.setError("email is required");
             editEmail.requestFocus();
             return;
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editEmail.setError("The correct email is required");
             editEmail.requestFocus();
             return;
         }
-        if (password.isEmpty()){
+        if (password.isEmpty()) {
             edidPassword.setError("The password is required");
             edidPassword.requestFocus();
             return;
         }
-        if (password.length()<4){
+        if (password.length() < 4) {
             edidPassword.setError("The password lenght should be more than 3 character");
             edidPassword.requestFocus();
             return;
         }
 
-        Call<LoginResponse> call= RetrofitClient1
+        Call<LoginResponse> call = RetrofitClient1
                 .getInstance()
                 .getApi()
-                .userLogin(email,password);
-        call.enqueue(new Callback<LoginResponse>(){
+                .userLogin(email, password);
+        call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                try {
-                    if (response.code() == 200) {
-                        LoginResponse dr = response.body();
-                        Toast.makeText(MainActivity.this, dr.getMsg(), Toast.LENGTH_LONG).show();
-                    } else {
-                        Integer res = response.code();
-                        Toast.makeText(MainActivity.this,"Error "+res, Toast.LENGTH_LONG).show();
-                    }
-                } catch (Exception e) {
-                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                LoginResponse lr=response.body();
+                if(!lr.isError()) {
+                    Toast.makeText(MainActivity.this, lr.getMsg(), Toast.LENGTH_LONG).show();
+                    SharedPrefManager.getInstance(MainActivity.this)
+                            .saveUser(lr.getUser());
+                    Intent intent=new Intent(MainActivity.this,mainprofile.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    SharedPrefManager.getInstance(MainActivity.this).isLogIn();
+                }
+                 else {
+                    Toast.makeText(MainActivity.this,lr.getMsg(),Toast.LENGTH_LONG).show();
                 }
             }
+
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this,t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
 
             }
         });
-}
-
+    }
 }

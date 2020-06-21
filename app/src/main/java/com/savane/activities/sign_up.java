@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -17,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import com.savane.R;
+import com.savane.activities.map.PermissionsActivity;
 import com.savane.api.RetrofitClient;
 import com.savane.data.model.DefaultResponse;
 import com.savane.datePickerFragment;
@@ -33,7 +33,6 @@ public class sign_up  extends AppCompatActivity implements DatePickerDialog.OnDa
        TextView DoB;
         RadioGroup gender;
     RadioButton genderRadioButton;
-      Button date;
     TextView buttonSigup, login;
 
     @Override
@@ -146,9 +145,12 @@ public class sign_up  extends AppCompatActivity implements DatePickerDialog.OnDa
       call.enqueue(new Callback<DefaultResponse>() {
           @Override
           public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-               if(response.code()==201){
+               if(response.code()==201 ){
                   DefaultResponse dr=response.body();
                   Toast.makeText(sign_up.this,dr.getMsg(),Toast.LENGTH_LONG).show();
+                   Intent i= new Intent(getApplicationContext(), PermissionsActivity.class);
+                   i.putExtra("email",mail);
+                   startActivity(i);
               }else {
                   Toast.makeText(sign_up.this,"Http code "+response.code()+"message "+response.message(),Toast.LENGTH_LONG).show();
               }

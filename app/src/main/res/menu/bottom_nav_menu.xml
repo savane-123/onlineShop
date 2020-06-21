@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<item
+		android:id="@+id/nav_home"
+		android:icon="@drawable/ic_home_black_24dp"
+		android:title="HOME" />
+
+	<item
+		android:id="@+id/nav_sell"
+		android:icon="@drawable/ic_cloud_circle_black_24dp"
+		android:title="SELL" />
+
+	<item
+		android:id="@+id/nav_setting"
+		android:icon="@drawable/ic_settings_black_24dp"
+		android:title="SETTING"
+		/>
+
+</menu>

@@ -7,11 +7,12 @@ public class DefaultResponse {
     private boolean error;
     @SerializedName("message")
     private String msg;
+    private User user;
 
-    public DefaultResponse(boolean error, String msg) {
+    public DefaultResponse(boolean error, String msg,User user) {
         this.error = error;
         this.msg = msg;
-
+        this.user=user;
     }
 
     public boolean isError() {
@@ -21,5 +22,5 @@ public class DefaultResponse {
     public String getMsg() {
         return msg;
     }
-
+    public User getUser(){return user;}
 }

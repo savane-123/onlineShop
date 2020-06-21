@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.savane">
-
+	<!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="com.google.android.providers.gsf.permission. READ_GSERVICES" />
 
 	<application
 		android:allowBackup="true"
@@ -12,11 +22,25 @@
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme"
 		android:usesCleartextTraffic="true">
-		<activity android:name=".activities.updateUser"></activity>
-		<activity android:name=".sendOtp" />
+
+		<meta-data
+			android:name="com.google.android.geo.API_KEY"
+			android:value="@string/google_maps_key" />
+
+		<activity android:name=".activities.map.SetMapActivity" />
 		<activity android:name=".conformPassword" />
 		<activity android:name=".activities.Address" />
+		<activity android:name=".activities.updateUser" />
+		<activity android:name=".activities.deleteUser" />
+		<activity
+			android:name=".MapAddress"
+			android:label="@string/title_activity_map_address" />
+		<activity android:name=".activities.map.PermissionsActivity" />
+		<activity android:name=".sendOtp" />
+		<activity android:name=".activities.mainprofile" />
 		<activity android:name=".activities.sign_up" />
+		<activity android:name=".activities.uploadImage" />
+		<activity android:name=".userProfile"/>
 		<activity android:name=".activities.MainActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />

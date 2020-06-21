@@ -58,4 +58,11 @@
 		<item>Male</item>
 		<item>Female</item>
 	</string-array>
+	<string name="title_activity_map_address">Map</string>
+	<string name="title_activity_fragment">fragment</string>
+	<string name="title_home">Home</string>
+	<string name="title_dashboard">Dashboard</string>
+	<string name="title_notifications">Notifications</string>
+	<string name="title_activity_mainfragment">mainfragment</string>
+	<string name="title_activity_main_profile">main_profile</string>
 </resources>
