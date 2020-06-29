@@ -52,7 +52,7 @@ public class deleteUser extends AppCompatActivity {
                     startActivity(i);
                     SharedPrefManager.getInstance(getApplicationContext()).clear();
                 }else {
-                    Toast.makeText(deleteUser.this,"Http code "+response.code()+"message "+response.message(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(deleteUser.this,"Http code "+user.getEmail()+"message "+response.message(),Toast.LENGTH_LONG).show();
                 }
 
             }

@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.savane.R;
-import com.savane.api.retrofitclit3;
+import com.savane.api.RetrofitClient;
 import com.savane.data.model.DefaultResponse;
 import com.savane.data.model.User;
 import com.savane.storage.SharedPrefManager;
@@ -30,13 +30,12 @@ import retrofit2.Response;
 public class uploadImage extends AppCompatActivity {
     private int ch;
     private Bitmap bitmap1;
-    private Bitmap bitmap2;
     private TextView tvImageOne;
     private String KEY_IMAGE = "image";
     private String KEY_IMAGE_Tow = "image2";
     private String KEY_NAME = "savane123";
-    private int PICK_IMAGE_REQUEST = 1;
-    private ImageView imageOne,imageTow;
+    private int PICK_IMAGE_REQUEST =1;
+    private ImageView imageOne;
     private final String string="Preview  Photo";
     private String imgString,imgStringTow;
     private TextView btnUpload;
@@ -62,7 +61,7 @@ public class uploadImage extends AppCompatActivity {
             btnUpload.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    uploadImage();
+                    uploadProfileImage();
                 }
             });
         }
@@ -73,14 +72,13 @@ public class uploadImage extends AppCompatActivity {
             if (requestCode == PICK_IMAGE_REQUEST && resultCode == this.RESULT_OK && data != null && data.getData() != null) {
                 Uri filePath = data.getData();
                 //Getting the Bitmap from Gallery
-                //tvImageOne.setText(string);
                 if (ch == 1) {
-                    bitmap1 = getBitmap(filePath, imageOne, tvImageOne);
+                    bitmap1 = getBitmap(filePath,imageOne,tvImageOne);
                 }
                // bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), filePath);
 
                 //Setting the Bitmap to ImageView
-//               imageOne.setImageBitmap(bitmap);
+               // imageOne.setImageBitmap(bitmap);
             }
         }
         private void showFileChooser() {
@@ -93,7 +91,7 @@ public class uploadImage extends AppCompatActivity {
         public String getStringImage(Bitmap bmp){
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-            byte[] imageBytes = baos.toByteArray();
+            byte[]imageBytes = baos.toByteArray();
             String encodedImage  = Base64.encodeToString(imageBytes, Base64.DEFAULT);
             return encodedImage;
         }
@@ -104,24 +102,23 @@ public class uploadImage extends AppCompatActivity {
                 //Setting the Bitmap to ImageView
                 imageView.setImageBitmap(bitmap);
                 textView.setText(string);
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
             return bitmap;
         }
-        private void uploadImage(){
+        private void uploadProfileImage(){
             if (bitmap1==null){
                 Toast.makeText(getApplicationContext(),"bitmap1 null",Toast.LENGTH_LONG).show();
                 return;
             }else {
                 User user= SharedPrefManager.getInstance(getApplication()).getUser();
                 String imgOne=getStringImage(bitmap1);
-                Call<DefaultResponse> call= retrofitclit3
+                Call<DefaultResponse> call=  RetrofitClient
                         .getInstance()
                         .getApi()
                         .addImage(imgOne,user.getId().toString());
-                call.enqueue(new Callback<DefaultResponse>() {
+                call.enqueue(new Callback<DefaultResponse>(){
                     @Override
                     public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
                         DefaultResponse responseData=response.body();
@@ -131,13 +128,11 @@ public class uploadImage extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"error1 "+responseData.getMsg(),Toast.LENGTH_LONG).show();
                         }else {
                             Toast.makeText(getApplicationContext(),"error 2 "+response.code(),Toast.LENGTH_LONG).show();
-
                         }
                     }
-
                     @Override
                     public void onFailure(Call<DefaultResponse> call, Throwable t) {
-
+                          Toast.makeText(getApplicationContext(),"anable to insert"+t.getMessage(),Toast.LENGTH_LONG).show();
                     }
                 });
             }

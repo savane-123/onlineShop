@@ -2,44 +2,43 @@ package com.savane.api;
 
 import androidx.annotation.Nullable;
 
+import com.savane.data.model.Address;
 import com.savane.data.model.DefaultResponse;
-import com.savane.data.model.UserResponse;
+import com.savane.data.model.Image;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
+
 public interface Api {
     @FormUrlEncoded
-    @POST("createUser")
+    @POST("RegisterApi.php/createUser")
     Call<DefaultResponse> createUser(
-
             @Nullable @Field("Firstname") String firsName,
             @Nullable @Field("LastName") String LastName,
             @Nullable @Field("Email") String Email,
             @Nullable @Field("Phone") String Phone,
             @Nullable @Field("DateOfBirth") String DateOfBirth,
             @Nullable @Field("Password") String Password,
-           // @Nullable @Field("DateOfregistration") String DateOfregistration,
-           // @Nullable @Field("DateOfUpdate") String DateOfUpdate,
             @Nullable @Field("Gender") String Gender
-            //@Nullable @Field("AddressId") int AddressId,
-            //@Nullable @Field("UserType") String UserType
     );
 
     @FormUrlEncoded
-    @POST("userLogin")
+    @POST("LoginApi.php/userLogin")
     Call<LoginResponse> userLogin(
             @Nullable @Field("email") String email,
             @Nullable @Field("password") String password
     );
     @FormUrlEncoded
-    @POST("sendResetOtp")
+    @POST("RegisterApi.php/sendResetOtp")
     Call<DefaultResponse> sendResetOtp(
             @Nullable @Field("email") String email
     );
     @FormUrlEncoded
-    @POST("updatePassword")
+    @POST("RegisterApi.php/updatePassword")
     Call<DefaultResponse> updatePassword(
             @Nullable @Field("email") String email,
             @Nullable @Field("otp") String otp,
@@ -47,7 +46,7 @@ public interface Api {
             @Nullable @Field("conformpassword") String conformpassword
     );
     @FormUrlEncoded
-    @POST("updateUser")
+    @POST("RegisterApi.php/updateUser")
     Call<DefaultResponse> updateUser(
             @Nullable @Field("Firstname") String Firstname,
             @Nullable @Field("LastName") String LastName,
@@ -57,12 +56,12 @@ public interface Api {
             @Nullable @Field("Gender") String Gender
     );
     @FormUrlEncoded
-    @POST("deleteUser")
+    @POST("RegisterApi.php/deleteUser")
     Call<DefaultResponse> deleteUser(
             @Nullable @Field("email") String email
     );
     @FormUrlEncoded
-    @POST("addAddress")
+    @POST("AddressApi.php/addAddress")
     Call<DefaultResponse> addAddress(
             @Nullable @Field("email") String email,
             @Nullable @Field("address") String address,
@@ -73,14 +72,16 @@ public interface Api {
             @Nullable @Field("country") String country
     );
     @FormUrlEncoded
-    @POST("addImage")
+    @POST("ImageApi.php/addImage")
     Call<DefaultResponse> addImage(
             @Nullable @Field("image1") String image1,
-            @Nullable @Field("user_id") String user_id
+            @Nullable @Field("userId") String user_id
     );
-    @FormUrlEncoded
-    @POST("getAllImages")
-    Call<UserResponse> getAllImages(
-            @Nullable @Field("userId") String userId
-    );
+
+    @GET("ImageApi.php/getImageByUserId")
+    Call<Image> getProfileImage(@Query("userId") Integer userId);
+
+
+    @GET("AddressApi.php/getAddressByUserId")
+    Call<Address> getAddressByUserId(@Query("userId") int userId);
 }

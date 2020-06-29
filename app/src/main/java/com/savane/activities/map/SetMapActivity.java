@@ -54,7 +54,7 @@ import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.mancj.materialsearchbar.adapter.SuggestionsAdapter;
 import com.savane.R;
 import com.savane.activities.mainprofile;
-import com.savane.api.RetrofitClient2;
+import com.savane.api.RetrofitClient;
 import com.savane.data.model.DefaultResponse;
 import com.skyfishjy.library.RippleBackground;
 
@@ -393,18 +393,17 @@ public class SetMapActivity extends AppCompatActivity implements OnMapReadyCallb
         stateName = addresses.get(0).getAdminArea();
         countryName1 = addresses.get(0).getCountryName();
 
-        Call<DefaultResponse> call = RetrofitClient2
+        Call<DefaultResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
                 .addAddress(email,fullAddress,String.valueOf(myLong), String.valueOf(myLat),cityName,stateName,countryName1);
         call.enqueue(new Callback<DefaultResponse>() {
             @Override
             public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-
-                if (response.code() == 201) {
+                if (response.code() == 201){
                     DefaultResponse dr = response.body();
                     Toast.makeText(getApplicationContext(), dr.getMsg(), Toast.LENGTH_LONG).show();
-                    Intent i=new Intent(getApplicationContext(), mainprofile.class);
+                    Intent i=new Intent(getApplicationContext(),mainprofile.class);
                     startActivity(i);
                 } else {
                     Toast.makeText(getApplicationContext(), "Error message", Toast.LENGTH_LONG).show();

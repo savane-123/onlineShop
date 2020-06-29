@@ -2,6 +2,7 @@ package com.savane.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
@@ -12,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.savane.R;
 import com.savane.api.LoginResponse;
-import com.savane.api.RetrofitClient1;
+import com.savane.api.RetrofitClient;
 import com.savane.sendOtp;
 import com.savane.storage.SharedPrefManager;
 
@@ -57,10 +58,9 @@ public class MainActivity extends AppCompatActivity {
                     login();
                  }
             }
-
         });
-
     }
+
     private void login() {
         String email = editEmail.getText().toString().trim();
         String password = edidPassword.getText().toString().trim();
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        Call<LoginResponse> call = RetrofitClient1
+        Call<LoginResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
                 .userLogin(email, password);
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 LoginResponse lr=response.body();
                 if(!lr.isError()) {
-                    Toast.makeText(MainActivity.this, lr.getMsg(), Toast.LENGTH_LONG).show();
+                   Toast.makeText(MainActivity.this, lr.getMsg(), Toast.LENGTH_LONG).show();
                     SharedPrefManager.getInstance(MainActivity.this)
                             .saveUser(lr.getUser());
                     Intent intent=new Intent(MainActivity.this,mainprofile.class);
@@ -114,4 +114,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    protected void onStart() {    super.onStart();
+        Log.i("df",String.valueOf(SharedPrefManager.getInstance(this).isLogIn()));
+        if(SharedPrefManager.getInstance(this).isLogIn())
+        {
+            Intent intent=new Intent(getApplicationContext(), mainprofile.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK); startActivity(intent);}}
 }

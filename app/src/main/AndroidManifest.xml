@@ -40,7 +40,7 @@
 		<activity android:name=".activities.mainprofile" />
 		<activity android:name=".activities.sign_up" />
 		<activity android:name=".activities.uploadImage" />
-		<activity android:name=".userProfile"/>
+			<activity android:name=".userProfile"/>
 		<activity android:name=".activities.MainActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />

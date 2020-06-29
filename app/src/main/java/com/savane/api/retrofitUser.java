@@ -22,4 +22,16 @@ public class retrofitUser {
     public String getUserId() {
         return userId;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }

@@ -2,51 +2,80 @@ package com.savane.data.model;
 
 public class User {
     private Integer id;
-    private  String firsName;
-    private String LastName;
-    private String Email;
-    private String Phone;
-    private String DateOfBirth;
-    private String Gender;
-
-
-    public User(Integer id, String firsName, String LastName, String Email, String Phone, String DateOfBirth,String Gender) {
-        this.id = id;
-        this.firsName = firsName ;
-        this.LastName = LastName;
-        this.Email = Email;
-        this.Phone = Phone;
-        this.DateOfBirth = DateOfBirth;
-        this.Gender = Gender;
-    }
-
+    private  String firstName;
+    private String lastName;
+    private String phone;
+    private String email;
+    private String dateOfBirth;
+    private String gender;
+    private String AddressId;
     public Integer getId() {
         return id;
     }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
-        return firsName;
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
-
-    public String getEmail() {
-        return Email;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPhone() {
-        return Phone;
+        return phone;
     }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     public String getDateOfBirth() {
-        return DateOfBirth;
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getGender() {
-        return Gender;
+        return gender;
     }
 
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
+    public String getAddressId() {
+        return AddressId;
+    }
+
+    public void setAddressId(String gender) {
+        this.gender = AddressId;
+    }
+    public User(Integer id, String firstName, String lastName, String email, String phone, String dateOfBirth, String gender,String  AddressId) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.AddressId= AddressId;
+    }
 }
