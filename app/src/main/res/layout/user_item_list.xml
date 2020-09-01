@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:padding="10dp"
+	>
+	<androidx.cardview.widget.CardView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="2dp"
+		android:padding="5dp">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+
+			>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="2dp"
+				>
+			<ImageView
+				android:layout_width="match_parent"
+				android:layout_height="150dp"
+				android:id="@+id/item_img"
+				/>
+			</LinearLayout>
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="2dp"
+				android:layout_marginLeft="2dp"
+				android:layout_marginRight="2dp"
+				android:layout_marginBottom="2dp"
+				android:hint="Price"
+				android:textSize="14dp"
+				android:textColor="#A9000000"
+				android:id="@+id/tv_price"
+				/>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				android:layout_gravity="center_horizontal"
+				android:background="@drawable/liner_background"
+				android:padding="2dp"
+				>
+				<ImageButton
+					android:id="@+id/view"
+					android:layout_width="30dp"
+					android:layout_height="30dp"
+					android:background="@drawable/view_icon"
+					android:padding="8dp"
+					android:layout_marginRight="20dp"
+					android:text="View"
+					android:textColor="@color/grey2" />
+				<ImageButton
+					android:id="@+id/update"
+					android:layout_width="30dp"
+					android:layout_height="30dp"
+					android:background="@drawable/edit_icon"
+					android:padding="8dp"
+					android:text="Edit"
+					android:layout_marginRight="20dp"
+					android:textColor="@color/blue" />
+				<ImageButton
+					android:id="@+id/delet"
+					android:layout_width="30dp"
+					android:layout_height="30dp"
+					android:background="@drawable/delete_icon"
+					android:padding="8dp"
+					android:text="Delete"
+					android:layout_marginRight="20dp"
+					android:textColor="@color/grey2" />
+			</LinearLayout>
+		</LinearLayout>
+	</androidx.cardview.widget.CardView>
+</RelativeLayout>

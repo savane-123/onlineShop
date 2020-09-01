@@ -53,7 +53,7 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.mancj.materialsearchbar.adapter.SuggestionsAdapter;
 import com.savane.R;
-import com.savane.activities.mainprofile;
+import com.savane.activities.MainActivity;
 import com.savane.api.RetrofitClient;
 import com.savane.data.model.DefaultResponse;
 import com.skyfishjy.library.RippleBackground;
@@ -403,7 +403,7 @@ public class SetMapActivity extends AppCompatActivity implements OnMapReadyCallb
                 if (response.code() == 201){
                     DefaultResponse dr = response.body();
                     Toast.makeText(getApplicationContext(), dr.getMsg(), Toast.LENGTH_LONG).show();
-                    Intent i=new Intent(getApplicationContext(),mainprofile.class);
+                    Intent i=new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(i);
                 } else {
                     Toast.makeText(getApplicationContext(), "Error message", Toast.LENGTH_LONG).show();

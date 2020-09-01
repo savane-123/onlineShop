@@ -9,6 +9,9 @@ public class User {
     private String dateOfBirth;
     private String gender;
     private String AddressId;
+    private  Integer imageId;
+    private String profileImage;
+
     public Integer getId() {
         return id;
     }
@@ -68,7 +71,26 @@ public class User {
     public void setAddressId(String gender) {
         this.gender = AddressId;
     }
-    public User(Integer id, String firstName, String lastName, String email, String phone, String dateOfBirth, String gender,String  AddressId) {
+    public Integer getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(Integer imageId) {
+        this.imageId = imageId;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
+    public User(Integer id, String firstName, String lastName,
+                String email, String phone, String dateOfBirth,
+                String gender,String  AddressId,
+                Integer imageId,
+                String profileImage) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -77,5 +99,7 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.AddressId= AddressId;
+        this.imageId = imageId;
+        this.profileImage = profileImage;
     }
 }

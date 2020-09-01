@@ -4,73 +4,126 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/colorPrimaryDark"
-	tools:context=".sendOtp">
+	android:background="@drawable/round_border"
+	tools:context=".activities.user.sendOtp">
+	<ImageView
+		android:layout_width="match_parent"
+		android:layout_height="150dp"
+		android:layout_marginTop="-60dp"
+		android:layout_marginRight="-20dp"
+		android:layout_marginLeft="-20dp"
+		android:background="@drawable/top_carve_tow"
+		/>
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:gravity="center"
-		android:paddingLeft="60dp"
-		android:paddingRight="60dp">
-	<ScrollView
-		android:layout_marginBottom="30dp"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical">
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:gravity="center">
-		<ImageView
-			android:layout_width="150dp"
-			android:layout_height="150dp"
-			android:src="@drawable/ibytes"
-			/>
-	</LinearLayout>
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
 		android:orientation="vertical"
-		android:padding="16dp">
-		<LinearLayout
+		>
+		<androidx.cardview.widget.CardView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:cardElevation="5dp"
+			android:layout_gravity="center_horizontal"
+			app:cardBackgroundColor="@color/white"
+			android:layout_marginTop="70dp"
+			app:cardCornerRadius="6dp"
+			>
+			<ImageView
+				android:id="@+id/logo"
+				android:layout_width="150dp"
+				android:layout_height="150dp"
+				android:layout_gravity="center_horizontal"
+				android:background="@drawable/logo"
+				android:gravity="center"
+				android:padding="8dp"
+				android:textSize="40sp"
+				android:textStyle="bold" />
+		</androidx.cardview.widget.CardView>
+		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:orientation="horizontal">
-			<ImageView
-				android:layout_width="20dp"
-				android:layout_height="20dp"
-				android:src="@drawable/message"
-				android:layout_gravity="center"/>
+			android:text="Send OTP"
+			android:layout_gravity="center"
+			android:textAlignment="center"
+			android:textSize="20sp"
+			android:textColor="@color/black"
+			android:layout_marginTop="10dp"
+			android:layout_marginLeft="10dp"
+			android:layout_marginRight="10dp"
+			android:layout_marginBottom="10dp"
+			/>
+		<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_marginTop="20dp"
+			>
+		<androidx.cardview.widget.CardView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:cardElevation="20dp"
+			android:layout_marginRight="20dp"
+			android:layout_marginLeft="20dp"
+			app:cardBackgroundColor="@color/white"
+			android:layout_marginTop="50dp"
+			app:cardCornerRadius="6dp"
+			>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="10dp"
+		android:layout_gravity="center_horizontal"
+		android:gravity="center_horizontal"
+		android:orientation="vertical">
 		<EditText
 			android:id="@+id/mail"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:hint="Enter your mail"
-			android:textColorHint="#d9e5f3"
-			android:layout_marginLeft="15dp"
-			android:background="#00000000"
-			android:letterSpacing="0.1"
-			android:textSize="16dp"
+			android:hint="Email Address"
+			android:textColorHint="@color/black"
 			android:inputType="text"
-			android:textColor="#fff"
+			android:layout_marginTop="20dp"
+			android:drawableLeft="@drawable/message"
+			android:textColor="@color/black"
+
 			/>
-		</LinearLayout>
-		<TextView
-			android:id="@+id/sendMail"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="#009a9a"
-			android:text="Login"
-			android:textColor="#d9e5f3"
+			<androidx.cardview.widget.CardView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				app:cardElevation="20dp"
+				android:layout_marginLeft="10dp"
+				android:layout_marginBottom="20dp"
+				android:layout_gravity="center_horizontal"
+				app:cardBackgroundColor="@color/white"
+				android:layout_marginTop="70dp"
+				android:layout_marginRight="10dp"
+				app:cardCornerRadius="6dp"
+				>
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_gravity="center_horizontal"
+					android:gravity="center_horizontal"
+					android:layout_marginTop="20dp"
+					android:layout_marginBottom="20dp"
+					android:orientation="vertical"
+					>
+		<Button
+			android:id="@+id/send_mail"
+			android:layout_width="200dp"
+			android:layout_height="40dp"
+			android:layout_marginTop="20dp"
+			android:background="@drawable/next_background"
+			android:text="Send Otp"
+			android:textColor="@color/white"
 			android:textStyle="bold"
 			android:gravity="center"
-			android:padding="16dp"
+			android:layout_marginBottom="20dp"
 			android:letterSpacing="0.2"/>
+				</LinearLayout>
+			</androidx.cardview.widget.CardView>
 	</LinearLayout>
-	</LinearLayout>
+		</androidx.cardview.widget.CardView>
 	</ScrollView>
 	</LinearLayout>
 </RelativeLayout>

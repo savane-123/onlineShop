@@ -4,8 +4,8 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/colorPrimaryDark"
-	tools:context=".sendOtp">
+	android:background="@drawable/round_border"
+	tools:context=".activities.user.sendOtp">
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
@@ -20,27 +20,38 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:orientation="vertical">
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:gravity="center">
+				<androidx.cardview.widget.CardView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					app:cardElevation="5dp"
+					android:layout_gravity="center_horizontal"
+					app:cardBackgroundColor="@color/white"
+					android:layout_marginTop="70dp"
+					app:cardCornerRadius="6dp"
+					>
+
 					<ImageView
+						android:id="@+id/logo"
 						android:layout_width="150dp"
 						android:layout_height="150dp"
-						android:src="@drawable/ibytes"
-						/>
-				</LinearLayout>
+						android:layout_gravity="center_horizontal"
+						android:background="@drawable/logo"
+						android:gravity="center"
+						android:padding="8dp"
+						android:textSize="40sp"
+						android:textStyle="bold" />
+
+				</androidx.cardview.widget.CardView>
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:orientation="vertical"
 					android:padding="16dp">
-
 					<TextView
 						android:id="@+id/sendMail"
-						android:layout_width="match_parent"
+						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:background="#009a9a"
+						android:background="@drawable/next_background"
 						android:text="Do you realy want to delet your account ???"
 						android:textColor="#d9e5f3"
 						android:textStyle="bold"

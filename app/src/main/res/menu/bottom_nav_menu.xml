@@ -4,17 +4,16 @@
 	<item
 		android:id="@+id/nav_home"
 		android:icon="@drawable/ic_home_black_24dp"
-		android:title="HOME" />
+		android:title="HOME"
+		/>
 
 	<item
 		android:id="@+id/nav_sell"
-		android:icon="@drawable/ic_cloud_circle_black_24dp"
+		android:icon="@drawable/icon_add"
 		android:title="SELL" />
-
-	<item
-		android:id="@+id/nav_setting"
-		android:icon="@drawable/ic_settings_black_24dp"
-		android:title="SETTING"
+	<item android:id="@+id/profile"
+		android:icon="@drawable/mobile_icon"
+		android:title="MY AD"
 		/>
 
 </menu>

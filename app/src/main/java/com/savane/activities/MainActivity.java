@@ -2,122 +2,134 @@ package com.savane.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.Patterns;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.savane.R;
-import com.savane.api.LoginResponse;
-import com.savane.api.RetrofitClient;
-import com.savane.sendOtp;
+import com.savane.activities.fragments.HomeFragment;
+import com.savane.activities.fragments.SellFragment;
+import com.savane.activities.user.Login;
+import com.savane.activities.user.UserProfile;
+import com.savane.data.model.User;
 import com.savane.storage.SharedPrefManager;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-
-public class MainActivity extends AppCompatActivity {
-  EditText editEmail,edidPassword;
-  TextView buttonLogin,buttonSigin,forgotPassword;
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+     TextView myAd;
+     View view;
+     private ImageView profileImage,topCover;
+     LinearLayout topLine;
+    BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        editEmail=findViewById(R.id.text1);
-        edidPassword=findViewById(R.id.text2);
-        buttonLogin=findViewById(R.id.login);
-        buttonSigin=findViewById(R.id.sigin);
-        forgotPassword=findViewById(R.id.forgotPassword);
-       // buttonBack=findViewById(R.id.back);
+        bottomNavigationView = findViewById(R.id.bottom_nav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        profileImage=findViewById(R.id.profile_image);
+        topCover=findViewById(R.id.top_cover);
+        Toolbar toolbar =  findViewById(R.id.toolbar);
+        topLine = findViewById(R.id.top_line);
+        Fragment fragment = new HomeFragment();
+        anim();
+        displayFragment(fragment);
+        //setting the title
+        User user = SharedPrefManager.getInstance(getApplicationContext()).getUser();
+        toolbar.setTitle(user.getFirstName());
+        int colorWhite= ContextCompat.getColor(getApplicationContext(),R.color.white);
+        toolbar.setTitleTextColor(colorWhite);
 
-        buttonSigin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),sign_up.class);
-                startActivity(i);
-            }
-        });
+        //placing toolbar in place of actionbar
+        setSupportActionBar(toolbar);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.sandwishmenu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-       forgotPassword.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Intent i = new Intent(getApplicationContext(), sendOtp.class);
-               startActivity(i);
-           }
-       });
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                 {
-                    login();
-                 }
-            }
-        });
+        switch(item.getItemId()){
+            case R.id.menuAbout:
+                Toast.makeText(this, "You clicked about", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.menuLogout:
+                SharedPrefManager.getInstance(getApplicationContext()).clear();
+                Intent intent=new Intent(getApplicationContext(), Login.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);                break;
+            case R.id.menuDelete:
+                Toast.makeText(this, "You clicked delete", Toast.LENGTH_SHORT).show();
+
+
+        }
+        return true;
     }
 
-    private void login() {
-        String email = editEmail.getText().toString().trim();
-        String password = edidPassword.getText().toString().trim();
-        if (email.isEmpty()) {
-            editEmail.setError("email is required");
-            editEmail.requestFocus();
-            return;
-        }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editEmail.setError("The correct email is required");
-            editEmail.requestFocus();
-            return;
-        }
-        if (password.isEmpty()) {
-            edidPassword.setError("The password is required");
-            edidPassword.requestFocus();
-            return;
-        }
-        if (password.length() < 4) {
-            edidPassword.setError("The password lenght should be more than 3 character");
-            edidPassword.requestFocus();
-            return;
-        }
 
-        Call<LoginResponse> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .userLogin(email, password);
-        call.enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                LoginResponse lr=response.body();
-                if(!lr.isError()) {
-                   Toast.makeText(MainActivity.this, lr.getMsg(), Toast.LENGTH_LONG).show();
-                    SharedPrefManager.getInstance(MainActivity.this)
-                            .saveUser(lr.getUser());
-                    Intent intent=new Intent(MainActivity.this,mainprofile.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                    SharedPrefManager.getInstance(MainActivity.this).isLogIn();
-                }
-                 else {
-                    Toast.makeText(MainActivity.this,lr.getMsg(),Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-
-            }
-        });
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Fragment fragment = null;
+        switch (menuItem.getItemId()) {
+            case R.id.nav_home:
+                fragment = new HomeFragment();
+                topCover.setVisibility(View.VISIBLE);
+                topLine.setVisibility(View.VISIBLE);
+                break;
+            case R.id.nav_sell:
+                fragment = new SellFragment();
+                topCover.setVisibility(View.VISIBLE);
+                topLine.setVisibility(View.VISIBLE);
+                break;
+            case R.id.profile:
+                fragment = new UserProfile();
+                topCover.setVisibility(View.GONE);
+                topLine.setVisibility(View.GONE);
+                break;
+        }
+        if (fragment != null) {
+            displayFragment(fragment);
+        }else if(fragment==null){
+            fragment=new HomeFragment();
+            displayFragment(fragment);
+            topCover.setVisibility(View.VISIBLE);
+            topLine.setVisibility(View.VISIBLE);
+        }
+        return false;
     }
-    protected void onStart() {    super.onStart();
-        Log.i("df",String.valueOf(SharedPrefManager.getInstance(this).isLogIn()));
-        if(SharedPrefManager.getInstance(this).isLogIn())
-        {
-            Intent intent=new Intent(getApplicationContext(), mainprofile.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK); startActivity(intent);}}
+
+    public void displayFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_contenair, fragment)
+                .commit();
+    }
+    public void anim(){
+        Animation profileImageAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.top_down);
+        profileImage.startAnimation(profileImageAnim);
+        Animation lineTop = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.top_down);
+        topLine.setAnimation(lineTop);
+        Animation topCarveAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.top_down);
+        topCover.setAnimation(topCarveAnim);
+        Animation bnv = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.down_top);
+        bottomNavigationView.startAnimation(bnv);
+
+    }
 }

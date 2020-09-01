@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+	android:layout_height="wrap_content">
+<androidx.cardview.widget.CardView
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginTop="2dp"
+	android:layout_marginLeft="2dp"
+	android:layout_marginRight="2dp"
+	android:layout_marginBottom="2dp"
+	>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+		<ImageView
+			android:layout_width="match_parent"
+			android:layout_height="100dp"
+			android:layout_marginTop="2dp"
+			android:layout_marginLeft="2dp"
+			android:layout_marginRight="2dp"
+			android:layout_marginBottom="2dp"/>
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="2dp"
+			android:layout_marginLeft="2dp"
+			android:layout_marginRight="2dp"
+			android:layout_marginBottom="2dp"
+			android:hint="Item Name"
+			android:textSize="14dp"
+			android:textColor="#A9000000"
+			android:id="@+id/tv_name"
+			/>
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="2dp"
+			android:layout_marginLeft="2dp"
+			android:layout_marginRight="2dp"
+			android:layout_marginBottom="2dp"
+			android:hint="Item Name"
+			android:textSize="14dp"
+			android:textColor="#A9000000"
+			android:id="@+id/tv_city"
+			/>
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="2dp"
+			android:layout_marginLeft="2dp"
+			android:layout_marginRight="2dp"
+			android:layout_marginBottom="2dp"
+			android:hint="item Price"
+			android:textSize="14dp"
+			android:textColor="#A9000000"
+			android:id="@+id/tv_price"
+			/>
+	</LinearLayout>
+</androidx.cardview.widget.CardView>
+</RelativeLayout>

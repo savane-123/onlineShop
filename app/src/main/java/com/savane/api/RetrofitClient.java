@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class RetrofitClient {
-    private static final String BASED_URL="http://192.168.64.2/slim/onlineShop/onlineShop/RestApi/";
+    private static final String BASED_URL="http://192.168.1.3/slim/onlineShop/onlineShop/RestApi/";
     private static RetrofitClient mInstance;
     private Retrofit retrofit;
     public RetrofitClient(){

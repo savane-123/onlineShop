@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto">
-<item android:id="@+id/logout"
-    android:title="logout"
-	app:showAsAction="never"
-	android:orderInCategory="50"
-	/>
-	<item android:id="@+id/logoutAndDelete"
-		android:title="logout and delete my account"
-		app:showAsAction="never"
-        android:orderInCategory="100"
+<!--	<item-->
+<!--		android:id="@+id/menuSearch"-->
+<!--		android:icon="@drawable/ic_baseline_search_24"-->
+<!--		android:orderInCategory="100"-->
+<!--		android:title="Search"-->
+<!--		app:actionViewClass="androidx.appcompat.widget.SearchView"-->
+<!--		app:showAsAction="always" />-->
+	<item
+		android:id="@+id/menuAbout"
+		android:title="About" />
+
+	<item
+		android:id="@+id/menuLogout"
+		android:title="Logout" />
+	<item
+		android:id="@+id/menuDelete"
+		android:title="Delete My Account"
+		android:icon="@drawable/delete_icon"
 		/>
 
 </menu>

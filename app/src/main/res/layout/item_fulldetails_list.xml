@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+	android:layout_height="match_parent">
+<androidx.cardview.widget.CardView
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginTop="2dp"
+	android:layout_marginLeft="2dp"
+	android:layout_marginRight="2dp"
+	android:layout_marginBottom="2dp">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+	<ImageView
+		android:layout_width="match_parent"
+		android:layout_height="150dp"
+		android:id="@+id/item_img"
+		/>
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="2dp"
+			android:layout_marginLeft="2dp"
+			android:layout_marginRight="2dp"
+			android:layout_marginBottom="2dp"
+			android:hint="Item Name"
+			android:textSize="14dp"
+			android:textColor="#A9000000"
+			android:id="@+id/tv_city"
+			/>
+		<TextView
+
+			android:layout_width="200dp"
+			android:layout_height="wrap_content"
+			android:text="Brand"
+			android:id="@+id/item_brand"
+			android:textSize="15dp"
+			/>
+		<TextView
+			android:layout_width="200dp"
+			android:text="Price"
+			android:layout_height="wrap_content"
+			android:id="@+id/item_price"
+			android:textSize="15dp"
+			/>
+		<TextView
+			android:layout_width="200dp"
+			android:text="Date"
+			android:layout_height="wrap_content"
+			android:id="@+id/item_date"
+			android:textSize="15dp"
+			/>
+
+		<TextView
+			android:layout_width="200dp"
+			android:layout_height="wrap_content"
+			android:text="description"
+			android:id="@+id/item_description"
+			android:inputType="textImeMultiLine"
+			android:textSize="15dp"
+			/>
+
+		<TextView
+			android:layout_width="200dp"
+			android:layout_height="wrap_content"
+			android:text="Contact"
+			android:id="@+id/owner_contact"
+			android:textSize="15dp"
+			/>
+	</LinearLayout>
+</androidx.cardview.widget.CardView>
+</RelativeLayout>
